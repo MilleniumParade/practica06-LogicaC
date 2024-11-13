@@ -3,6 +3,21 @@ max_elemento([X],X) :- !.
 max_elemento([X|Xs], M):- max_elemento(Xs, M), M >= X, !.
 max_elemento([X|Xs], X):- max_elemento(Xs, M), X >  M.
 
+#Ejercicio 2
+suma_elementos([], 0).
+suma_elementos([X|Xs], S) :-
+    suma_elementos(Xs, S2),
+    S is S2 + X.
+
+combina_con_suma([], _, []).
+combina_con_suma([X|Xs], SumaL1, [Y|L]) :-
+    Y is X + SumaL1,                
+    combina_con_suma(Xs, SumaL1, L).
+
+combina(L1, L2) :-
+    suma_elementos(L1, SumaL1),   
+    combina_con_suma(L1, SumaL1, L2).
+
 
 #Ejercicio 4
 arma(espada).
