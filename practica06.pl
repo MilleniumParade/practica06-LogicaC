@@ -17,8 +17,7 @@ combina_con_suma([X|Xs], SumaL1, [Y|L]) :-
     Y is X + SumaL1,                
     combina_con_suma(Xs, SumaL1, L).
 
-#Predicado  que recibe una lista L1 de números y a partir de ella
-construye L2,
+#Predicado  que recibe una lista L1 de números y a partir de ella construye L2.
 combina(L1, L2) :-
     suma_elementos(L1, SumaL1),   
     combina_con_suma(L1, SumaL1, L2).
