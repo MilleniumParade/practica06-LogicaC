@@ -1,25 +1,30 @@
 #Ejercicio 1
+#Predicado para encontrar el máximo elemento en una lista.
 max_elemento([X],X) :- !.
 max_elemento([X|Xs], M):- max_elemento(Xs, M), M >= X, !.
 max_elemento([X|Xs], X):- max_elemento(Xs, M), X >  M.
 
 #Ejercicio 2
-#Función auxiliar que nos ayuda a sumar todos los elementos de una lista
+#Predicado auxiliar que nos ayuda a sumar todos los elementos de una lista
 suma_elementos([], 0).
 suma_elementos([X|Xs], S) :-
     suma_elementos(Xs, S2),
     S is S2 + X.
 
+#Predicado auxiliar que usa la suma total calculada
 combina_con_suma([], _, []).
 combina_con_suma([X|Xs], SumaL1, [Y|L]) :-
     Y is X + SumaL1,                
     combina_con_suma(Xs, SumaL1, L).
 
+#Predicado  que recibe una lista L1 de números y a partir de ella
+construye L2,
 combina(L1, L2) :-
     suma_elementos(L1, SumaL1),   
     combina_con_suma(L1, SumaL1, L2).
 
 #Ejercicio 3
+#Predicado auxiliar que separa la lista en una parte creciente y el resto
 creciente([X, Y | Resto], [Y | Resto]) :-
     X >= Y.
 creciente([X, Y | Resto], ParteDecreciente) :-
@@ -27,6 +32,7 @@ creciente([X, Y | Resto], ParteDecreciente) :-
     creciente([Y | Resto], ParteDecreciente).
 creciente([_], []).  
 
+#Predicado auxiliar que verifica si la lista es decreciente
 decreciente([_]).
 decreciente([X, Y | Resto]) :-
     X > Y,
