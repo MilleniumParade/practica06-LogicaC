@@ -4,6 +4,7 @@ max_elemento([X|Xs], M):- max_elemento(Xs, M), M >= X, !.
 max_elemento([X|Xs], X):- max_elemento(Xs, M), X >  M.
 
 #Ejercicio 2
+#Función auxiliar que nos ayuda a sumar todos los elementos de una lista
 suma_elementos([], 0).
 suma_elementos([X|Xs], S) :-
     suma_elementos(Xs, S2),
@@ -18,6 +19,22 @@ combina(L1, L2) :-
     suma_elementos(L1, SumaL1),   
     combina_con_suma(L1, SumaL1, L2).
 
+#Ejercicio 3
+creciente([X, Y | Resto], [Y | Resto]) :-
+    X >= Y.
+creciente([X, Y | Resto], ParteDecreciente) :-
+    X < Y,
+    creciente([Y | Resto], ParteDecreciente).
+creciente([_], []).  
+
+decreciente([_]).
+decreciente([X, Y | Resto]) :-
+    X > Y,
+    decreciente([Y | Resto]).
+
+convexo(L1) :-
+    creciente(L1, ParteDecreciente),
+    decreciente(ParteDecreciente).
 
 #Ejercicio 4
 arma(espada).
